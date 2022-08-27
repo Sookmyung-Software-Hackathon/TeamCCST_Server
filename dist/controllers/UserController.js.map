@@ -1,0 +1,1 @@
+{"version":3,"file":"UserController.js","sourceRoot":"/","sources":["controllers/UserController.ts"],"names":[],"mappings":";;;AAIA,MAAa,cAAc;CAG1B;AAHD,wCAGC","sourcesContent":["import {getRepository} from \"typeorm\";\nimport {NextFunction, Request, Response} from \"express\";\nimport {User} from \"../entity/User\";\n\nexport class UserController {\n\n\n}"]}

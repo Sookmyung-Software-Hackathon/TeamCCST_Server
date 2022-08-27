@@ -1,0 +1,203 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"PostBaseResponseDto": {
+				"properties": {
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"properties": {
+							"id": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"id"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"status",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
+			"UserCreateDto": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
+			"UserLoginResponseDto": {
+				"properties": {
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"properties": {
+							"email": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"email",
+							"name"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"status",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
+			"UserLoginDto": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": true
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "sample-api",
+		"version": "1.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"email": "jokj624@gmail.com",
+			"name": "채정아"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/auth/signup": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PostBaseResponseDto"
+								}
+							}
+						}
+					},
+					"409": {
+						"description": "Duplicate - 이미 존재하는 유저"
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserCreateDto"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/signin": {
+			"post": {
+				"operationId": "LoginUser",
+				"responses": {
+					"404": {
+						"description": "Not Found - 이메일에 해당하는 사용자 정보 없음"
+					},
+					"409": {
+						"description": "Invalid - 비밀번호가 올바르지 않음"
+					},
+					"451": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserLoginResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserLoginDto"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "http://localhost:3000/"
+		}
+	]
+}

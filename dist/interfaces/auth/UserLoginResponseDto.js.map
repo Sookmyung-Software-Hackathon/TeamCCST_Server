@@ -1,0 +1,1 @@
+{"version":3,"file":"UserLoginResponseDto.js","sourceRoot":"/","sources":["interfaces/auth/UserLoginResponseDto.ts"],"names":[],"mappings":"","sourcesContent":["import { SuccessResponse } from \"../common/SuccessResponse\";\n\nexport interface UserLoginResponseDto extends SuccessResponse{\n    data: {\n        name: string;\n        email: string;\n    }\n}"]}

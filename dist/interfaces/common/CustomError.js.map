@@ -1,0 +1,1 @@
+{"version":3,"file":"CustomError.js","sourceRoot":"/","sources":["interfaces/common/CustomError.ts"],"names":[],"mappings":"","sourcesContent":["export interface CustomError {\n    status: number;\n    error: {\n        reason: string;\n        location: string;\n    }\n}"]}

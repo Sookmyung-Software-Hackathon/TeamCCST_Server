@@ -1,0 +1,1 @@
+{"version":3,"file":"UserLoginDto.js","sourceRoot":"/","sources":["interfaces/auth/UserLoginDto.ts"],"names":[],"mappings":"","sourcesContent":["export interface UserLoginDto {\n    email: string;\n    password: string;\n}"]}

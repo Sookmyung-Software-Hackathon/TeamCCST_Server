@@ -1,0 +1,1 @@
+{"version":3,"file":"SuccessResponse.js","sourceRoot":"/","sources":["interfaces/common/SuccessResponse.ts"],"names":[],"mappings":"","sourcesContent":["export interface SuccessResponse {\n    status: number;\n    message: string;\n}"]}

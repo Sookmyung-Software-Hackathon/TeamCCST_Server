@@ -1,0 +1,1 @@
+{"version":3,"file":"PostBaseResponseDto.js","sourceRoot":"/","sources":["interfaces/common/PostBaseResponseDto.ts"],"names":[],"mappings":"","sourcesContent":["import { SuccessResponse } from \"./SuccessResponse\";\n\nexport interface PostBaseResponseDto extends SuccessResponse {\n    data: {\n        id: number;\n    }\n}"]}

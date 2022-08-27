@@ -1,0 +1,1 @@
+{"version":3,"file":"UserCreateDto.js","sourceRoot":"/","sources":["interfaces/auth/UserCreateDto.ts"],"names":[],"mappings":"","sourcesContent":["export interface UserCreateDto {\n    name: string;\n    email: string;\n    password: string;\n}"]}
