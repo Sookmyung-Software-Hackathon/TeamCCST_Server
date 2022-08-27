@@ -44,8 +44,12 @@ export class AuthService {
         throw generateError('Invalid');
       }
 
+      const accessToken = await generateAccessJWT(user.id, user.name);
+
       const data = {
-        name: user.name
+        id: user.id,
+        name: user.name,
+        accessToken
       };
 
       return data;

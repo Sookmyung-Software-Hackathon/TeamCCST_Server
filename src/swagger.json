@@ -80,16 +80,21 @@
 					},
 					"data": {
 						"properties": {
-							"email": {
+							"accessToken": {
 								"type": "string"
 							},
 							"name": {
 								"type": "string"
+							},
+							"id": {
+								"type": "number",
+								"format": "double"
 							}
 						},
 						"required": [
-							"email",
-							"name"
+							"accessToken",
+							"name",
+							"id"
 						],
 						"type": "object"
 					}
