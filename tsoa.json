@@ -5,6 +5,13 @@
   "controllerPathGlobs": ["./src/controllers/**/*Controller.ts"],
   "spec": {
     "specVersion": 3,
+    "securityDefinitions": {
+      "jwt": {
+        "type": "http",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "contact": {
       "email": "jokj624@gmail.com",
       "name": "채정아"
@@ -16,6 +23,7 @@
   "routes": {
     "routesDir": "./src/routes",
     "middleware": "express",
+    "authenticationModule": "./src/utils/authentication.ts",
     "iocModule": "./src/config/ioc"
   },
   "ignore": ["**/node_modules/**", "test/**/*"]
