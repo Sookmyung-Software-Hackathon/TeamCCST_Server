@@ -21,7 +21,9 @@ export class UserCreate1651740511420 implements MigrationInterface {
             ingredient VARCHAR(1000) NOT NULL,
             content VARCHAR(1000) NOT NULL,
             imageId INT NOT NULL,
-            FOREIGN KEY(imageId) REFERENCES image(id) ON DELETE CASCADE ON UPDATE CASCADE
+            userId INT NOT NULL,
+            FOREIGN KEY(imageId) REFERENCES image(id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY(userId) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE
         )`);
   }
 
