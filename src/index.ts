@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import './config/env';
 import './config/keys';
 import express from 'express';
+import cors from 'cors';
 import { RegisterRoutes } from './routes/routes';
 import { ValidateError } from 'tsoa';
 import { CustomError } from './interfaces/common/CustomError';
@@ -74,6 +75,3 @@ app.use(function errorHandler(
 });
 
 export = app;
-function cors(arg0: { origin: any; credentials: boolean }): any {
-  throw new Error('Function not implemented.');
-}
