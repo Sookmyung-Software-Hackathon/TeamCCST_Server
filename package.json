@@ -11,7 +11,8 @@
     "start": "ts-node src/index.ts",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "build:swagger": "tsoa swagger && mkdir -p dist && cp ./src/swagger.json ./dist/swagger.json",
-    "build:routes": "tsoa routes"
+    "build:routes": "tsoa routes",
+    "postinstall": "npm run build:tsc && npm run dev"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
