@@ -198,6 +198,47 @@
 					}
 				}
 			}
+		},
+		"/recipe": {
+			"get": {
+				"operationId": "GetRecipe",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"data": {},
+										"message": {
+											"type": "string"
+										},
+										"success": {
+											"type": "boolean"
+										},
+										"status": {
+											"type": "number",
+											"format": "double"
+										}
+									},
+									"required": [
+										"data",
+										"message",
+										"success",
+										"status"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Recipe"
+				],
+				"security": [],
+				"parameters": []
+			}
 		}
 	},
 	"servers": [
