@@ -1,3 +1,4 @@
+const PORT: string = process.env.PORT as string;
 const MYSQL_DATABASE: string = process.env.MYSQL_DATABASE as string;
 const MYSQL_PASSWORD: string = process.env.MYSQL_PASSWORD as string;
 const MYSQL_USERNAME: string = process.env.MYSQL_USERNAME as string;
@@ -6,6 +7,7 @@ const JWT_SECRET: string = process.env.JWT_SECRET as string;
 const NODE_ENV: string = (process.env.NODE_ENV as string) || 'development';
 
 export = {
+  PORT,
   MYSQL_DATABASE,
   MYSQL_PASSWORD,
   MYSQL_USERNAME,

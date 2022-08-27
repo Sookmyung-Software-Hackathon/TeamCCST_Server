@@ -1,6 +1,7 @@
 import app from '../index';
 import ormConfig from '../config/ormConfig';
 import { createConnection } from 'typeorm';
+import keys from '../config/keys';
 
 const connectionDB = createConnection(ormConfig);
 
@@ -17,7 +18,7 @@ const swaggerFile = require('../swagger.json');
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
-app.set('port', process.env.PORT);
+app.set('port', keys.PORT);
 
 app.listen(app.get('port'), () => {
   console.log(`Server is listening on PORT ${app.get('port')}`);
