@@ -6,7 +6,7 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"PostBaseResponseDto": {
+			"UserCreateResponseDto": {
 				"properties": {
 					"status": {
 						"type": "number",
@@ -17,12 +17,20 @@
 					},
 					"data": {
 						"properties": {
+							"accessToken": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
 							"id": {
 								"type": "number",
 								"format": "double"
 							}
 						},
 						"required": [
+							"accessToken",
+							"name",
 							"id"
 						],
 						"type": "object"
@@ -141,13 +149,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/PostBaseResponseDto"
+									"$ref": "#/components/schemas/UserCreateResponseDto"
 								}
 							}
 						}
-					},
-					"409": {
-						"description": "Duplicate - 이미 존재하는 유저"
 					}
 				},
 				"tags": [

@@ -19,9 +19,9 @@ import {
   Tags
 } from 'tsoa';
 import { UserCreateDto } from '../interfaces/auth/UserCreateDto';
+import { UserCreateResponseDto } from '../interfaces/auth/UserCreateResponseDto';
 import { UserLoginDto } from '../interfaces/auth/UserLoginDto';
 import { UserLoginResponseDto } from '../interfaces/auth/UserLoginResponseDto';
-import { PostBaseResponseDto } from '../interfaces/common/PostBaseResponseDto';
 import { AuthService } from '../services/AuthService';
 import { wrapSuccess } from '../utils/success';
 
@@ -34,11 +34,10 @@ export class AuthController extends Controller {
   }
 
   @SuccessResponse(201, 'Created')
-  @Response(409, 'Duplicate - 이미 존재하는 유저')
   @Post('/signup')
   public async createUser(
     @Body() userCreateDto: UserCreateDto
-  ): Promise<PostBaseResponseDto> {
+  ): Promise<UserCreateResponseDto> {
     try {
       const result = await this.authService.createUser(userCreateDto);
 
