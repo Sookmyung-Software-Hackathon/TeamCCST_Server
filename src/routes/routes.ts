@@ -26,7 +26,8 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
-            "email": {"dataType":"string","required":true},
+            "year": {"dataType":"double","required":true},
+            "nickname": {"dataType":"string","required":true},
             "password": {"dataType":"string","required":true},
         },
         "additionalProperties": true,
@@ -45,7 +46,7 @@ const models: TsoaRoute.Models = {
     "UserLoginDto": {
         "dataType": "refObject",
         "properties": {
-            "email": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
             "password": {"dataType":"string","required":true},
         },
         "additionalProperties": true,

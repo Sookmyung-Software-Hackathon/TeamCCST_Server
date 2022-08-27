@@ -1,5 +1,6 @@
 export interface UserCreateDto {
   name: string;
-  email: string;
+  year: number;
+  nickname: string;
   password: string;
 }

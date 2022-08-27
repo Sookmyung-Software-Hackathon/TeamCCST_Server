@@ -41,7 +41,11 @@
 					"name": {
 						"type": "string"
 					},
-					"email": {
+					"year": {
+						"type": "number",
+						"format": "double"
+					},
+					"nickname": {
 						"type": "string"
 					},
 					"password": {
@@ -50,7 +54,8 @@
 				},
 				"required": [
 					"name",
-					"email",
+					"year",
+					"nickname",
 					"password"
 				],
 				"type": "object",
@@ -91,7 +96,7 @@
 			},
 			"UserLoginDto": {
 				"properties": {
-					"email": {
+					"name": {
 						"type": "string"
 					},
 					"password": {
@@ -99,7 +104,7 @@
 					}
 				},
 				"required": [
-					"email",
+					"name",
 					"password"
 				],
 				"type": "object",
