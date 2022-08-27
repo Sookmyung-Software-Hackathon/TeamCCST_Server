@@ -27,6 +27,7 @@ export class AuthService {
 
       return data;
     } catch (e) {
+      console.log(e);
       throw e;
     }
   }
@@ -54,6 +55,7 @@ export class AuthService {
 
       return data;
     } catch (e) {
+      console.log(e);
       throw e;
     }
   }
