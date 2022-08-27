@@ -9,8 +9,11 @@ export class User {
   @Column()
   name: string;
 
-  @Column({ unique: true })
-  email: string;
+  @Column()
+  nickname: string;
+
+  @Column()
+  year: number;
 
   @Column()
   password: string;
