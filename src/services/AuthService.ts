@@ -4,6 +4,7 @@ import { UserCreateDto } from '../interfaces/auth/UserCreateDto';
 import { UserLoginDto } from '../interfaces/auth/UserLoginDto';
 import { UserRepository } from '../repository/UserRepository';
 import { generateError } from '../utils/error';
+import { generateAccessJWT } from '../utils/jwtHandler';
 
 @provideSingleton(AuthService)
 export class AuthService {
@@ -11,18 +12,17 @@ export class AuthService {
     const userRepository = getCustomRepository(UserRepository);
 
     try {
-      const existCheckUser = await userRepository.findOne({
-        name: userCreateDto.name
-      });
-
-      if (existCheckUser) throw generateError('Duplicate');
-
       const newUser = userRepository.create(userCreateDto);
 
       await userRepository.save(newUser);
-
+      const accessToken = await generateAccessJWT(
+        newUser.id,
+        userCreateDto.name
+      );
       const data = {
-        id: newUser.id
+        id: newUser.id,
+        name: newUser.name,
+        accessToken
       };
 
       return data;
