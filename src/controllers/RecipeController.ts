@@ -37,9 +37,10 @@ export class RecipeController extends Controller {
   // 전체조회 - 에러처리 멀 할지
   @SuccessResponse(200, 'Success')
   @Get('/')
-  public async getRecipe() {
+  public async getRecipe(): Promise<TotalRecipeResponseDto> {
     try {
       const result = await this.recipeService.getTotalRecipe();
+
       this.setStatus(200);
       return wrapSuccess(result, '요리법 전체 조회 성공', 200);
     } catch (e) {
@@ -47,4 +48,3 @@ export class RecipeController extends Controller {
     }
   }
 }
-
