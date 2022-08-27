@@ -122,6 +122,50 @@
 				],
 				"type": "object",
 				"additionalProperties": true
+			},
+			"RecipeResponse": {
+				"properties": {
+					"imageURL": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"writerInfo": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"imageURL",
+					"title",
+					"writerInfo"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
+			"TotalRecipeResponseDto": {
+				"properties": {
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/RecipeResponse"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": true
 			}
 		},
 		"securitySchemes": {
@@ -213,6 +257,28 @@
 						}
 					}
 				}
+			}
+		},
+		"/recipe": {
+			"get": {
+				"operationId": "GetRecipe",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TotalRecipeResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Recipe"
+				],
+				"security": [],
+				"parameters": []
 			}
 		}
 	},
