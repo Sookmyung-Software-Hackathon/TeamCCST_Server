@@ -2,15 +2,27 @@ import 'reflect-metadata';
 import './config/env';
 import './config/keys';
 import express from 'express';
+import cors from 'cors';
 import { RegisterRoutes } from './routes/routes';
 import { ValidateError } from 'tsoa';
 import { CustomError } from './interfaces/common/CustomError';
 import { errorHandling } from './utils/error';
+import keys from './config/keys';
 
 const app = express();
 
+const corsOrigin =
+  keys.NODE_ENV === 'production' ? [] : ['http://localhost:3000'];
+
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb', extended: false }));
+
+app.use(
+  cors({
+    origin: corsOrigin,
+    credentials: true
+  })
+);
 
 try {
   RegisterRoutes(app);

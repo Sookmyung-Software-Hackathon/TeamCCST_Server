@@ -1,6 +1,6 @@
 import { SuccessResponse } from '../common/SuccessResponse';
 
-export interface UserLoginResponseDto extends SuccessResponse {
+export interface UserCreateResponseDto extends SuccessResponse {
   data: {
     id: number;
     name: string;

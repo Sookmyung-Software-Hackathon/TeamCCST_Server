@@ -6,6 +6,9 @@ import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, H
 import { AuthController } from './../controllers/AuthController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { RecipeController } from './../controllers/RecipeController';
+import { expressAuthentication } from './../utils/authentication';
+// @ts-ignore - no great way to install types from subpackage
+const promiseAny = require('promise.any');
 import { iocContainer } from './../config/ioc';
 import { IocContainer, IocContainerFactory } from '@tsoa/runtime';
 import type { RequestHandler } from 'express';
@@ -14,12 +17,12 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "PostBaseResponseDto": {
+    "UserCreateResponseDto": {
         "dataType": "refObject",
         "properties": {
             "status": {"dataType":"double","required":true},
             "message": {"dataType":"string","required":true},
-            "data": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"double","required":true}},"required":true},
+            "data": {"dataType":"nestedObjectLiteral","nestedProperties":{"accessToken":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"id":{"dataType":"double","required":true}},"required":true},
         },
         "additionalProperties": true,
     },
@@ -40,7 +43,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "status": {"dataType":"double","required":true},
             "message": {"dataType":"string","required":true},
-            "data": {"dataType":"nestedObjectLiteral","nestedProperties":{"email":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}},"required":true},
+            "data": {"dataType":"nestedObjectLiteral","nestedProperties":{"accessToken":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"id":{"dataType":"double","required":true}},"required":true},
         },
         "additionalProperties": true,
     },
@@ -87,8 +90,8 @@ export function RegisterRoutes(app: express.Router) {
                 }
 
 
-              const promise = controller.createUser.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, 201, next);
+            const promise = controller.createUser.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, 201, next);
             } catch (err) {
                 return next(err);
             }
@@ -117,37 +120,8 @@ export function RegisterRoutes(app: express.Router) {
                 }
 
 
-              const promise = controller.loginUser.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, 200, next);
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/recipe',
-            ...(fetchMiddlewares<RequestHandler>(RecipeController)),
-            ...(fetchMiddlewares<RequestHandler>(RecipeController.prototype.getRecipe)),
-
-            async function RecipeController_getRecipe(request: any, response: any, next: any) {
-            const args = {
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request, response);
-
-                const container: IocContainer = typeof iocContainer === 'function' ? (iocContainer as IocContainerFactory)(request) : iocContainer;
-
-                const controller: any = await container.get<RecipeController>(RecipeController);
-                if (typeof controller['setStatus'] === 'function') {
-                controller.setStatus(undefined);
-                }
-
-
-              const promise = controller.getRecipe.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, 200, next);
+            const promise = controller.loginUser.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);
             }
