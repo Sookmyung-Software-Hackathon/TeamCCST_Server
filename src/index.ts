@@ -6,11 +6,22 @@ import { RegisterRoutes } from './routes/routes';
 import { ValidateError } from 'tsoa';
 import { CustomError } from './interfaces/common/CustomError';
 import { errorHandling } from './utils/error';
+import keys from './config/keys';
 
 const app = express();
 
+const corsOrigin =
+  keys.NODE_ENV === 'production' ? [] : ['http://localhost:3000'];
+
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb', extended: false }));
+
+app.use(
+  cors({
+    origin: corsOrigin,
+    credentials: true
+  })
+);
 
 try {
   RegisterRoutes(app);
@@ -63,3 +74,6 @@ app.use(function errorHandler(
 });
 
 export = app;
+function cors(arg0: { origin: any; credentials: boolean }): any {
+  throw new Error('Function not implemented.');
+}
