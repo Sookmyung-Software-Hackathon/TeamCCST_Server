@@ -12,10 +12,9 @@ export class AuthService {
 
     try {
       const existCheckUser = await userRepository.findOne({
-        email: userCreateDto.email
+        name: userCreateDto.name
       });
 
-      console.log(existCheckUser);
       if (existCheckUser) throw generateError('Duplicate');
 
       const newUser = userRepository.create(userCreateDto);
@@ -37,7 +36,7 @@ export class AuthService {
 
     try {
       const user = await userRepository.findOne({
-        email: userLoginDto.email
+        name: userLoginDto.name
       });
       if (!user) throw generateError('Not Found');
 
@@ -46,8 +45,7 @@ export class AuthService {
       }
 
       const data = {
-        name: user.name,
-        email: user.email
+        name: user.name
       };
 
       return data;
