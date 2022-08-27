@@ -3,9 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToOne,
-  JoinColumn
+  JoinColumn,
+  ManyToOne
 } from 'typeorm';
 import { Image } from './Image';
+import { User } from './User';
 
 @Entity()
 export class Recipe {
@@ -24,4 +26,7 @@ export class Recipe {
   @OneToOne(() => Image, image => image.id, { cascade: true })
   @JoinColumn()
   image: Image;
+
+  @ManyToOne(() => User, user => user.id, { cascade: true })
+  user: User;
 }
