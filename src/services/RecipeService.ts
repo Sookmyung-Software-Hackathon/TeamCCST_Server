@@ -87,7 +87,10 @@ export class RecipeService {
 
     try {
       const totalRecipe = await recipeRepository.find({
-        relations: ['image', 'user']
+        relations: ['image', 'user'],
+        order: {
+          id: "DESC"
+        }
       });
 
       const data: RecipeResponse[] = await Promise.all(
@@ -96,6 +99,7 @@ export class RecipeService {
           const title: string = `${recipe.user.name} ${recipe.user.nickname}의 ${recipe.food}`;
           const writerInfo: string = `${recipe.user.name} ${recipe.user.nickname} | ${age}세 청춘`;
           return {
+            id: recipe.id,
             imageURL: recipe.image.url,
             title: title,
             writerInfo: writerInfo
