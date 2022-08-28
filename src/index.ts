@@ -21,7 +21,8 @@ app.use(express.urlencoded({ limit: '100mb', extended: false }));
 app.use(
   cors({
     origin: corsOrigin,
-    credentials: true
+    credentials: true,
+    exposedHeaders: ['authorization']
   })
 );
 
