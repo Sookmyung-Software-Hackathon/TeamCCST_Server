@@ -15,6 +15,7 @@ const corsOrigin =
   keys.NODE_ENV === 'production' ? [keys.FRONT_URL] : ['http://localhost:3000'];
 
 app.use(express.json({ limit: '100mb' }));
+
 app.use(express.urlencoded({ limit: '100mb', extended: false }));
 
 app.use(
