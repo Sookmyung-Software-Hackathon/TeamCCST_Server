@@ -20,13 +20,14 @@ app.use(express.json({ limit: '100mb' }));
 
 app.use(express.urlencoded({ limit: '100mb', extended: false }));
 
-app.use(
-  cors({
-    origin: corsOrigin,
-    credentials: true,
-    exposedHeaders: ['authorization']
-  })
-);
+// app.use(
+//   cors({
+//     origin: corsOrigin,
+//     credentials: true,
+//     exposedHeaders: ['authorization']
+//   })
+// );
+app.use(cors());
 
 try {
   RegisterRoutes(app);
