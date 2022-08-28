@@ -8,11 +8,11 @@
   "scripts": {
     "dev": "nodemon --watch 'src/**/*' --exec 'ts-node' src/bin/www.ts",
     "build:tsc": "npm run build:routes && npm run build:swagger && tsc --build",
-    "start": "node --max_old_space_size=2560 ts-node src/bin/www.ts",
+    "start": "ts-node src/bin/www.ts",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "build:swagger": "tsoa swagger && mkdir -p dist && cp ./src/swagger.json ./dist/swagger.json",
     "build:routes": "tsoa routes",
-    "postinstall": "node --max_old_space_size=2560 npm run build:tsc"
+    "postinstall": "npm run build:tsc"
   },
   "dependencies": {
     "aws-sdk": "^2.1204.0",
