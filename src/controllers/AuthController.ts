@@ -3,18 +3,9 @@ import { fluentProvide } from 'inversify-binding-decorators';
 import {
   Body,
   Controller,
-  Delete,
-  Deprecated,
-  Get,
-  Patch,
-  Path,
   Post,
-  Put,
-  Query,
-  Request,
   Response,
   Route,
-  Security,
   SuccessResponse,
   Tags
 } from 'tsoa';

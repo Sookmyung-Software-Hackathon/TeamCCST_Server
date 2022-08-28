@@ -1,23 +1,23 @@
 import { inject } from 'inversify';
 import { fluentProvide } from 'inversify-binding-decorators';
 import {
-  Body,
   Controller,
-  Delete,
-  Deprecated,
+  FormField,
   Get,
-  Patch,
   Path,
   Post,
-  Put,
-  Query,
   Request,
   Response,
   Route,
   Security,
   SuccessResponse,
-  Tags
+  Tags,
+  UploadedFile
 } from 'tsoa';
+import { UserCreateDto } from '../interfaces/auth/UserCreateDto';
+import { UserLoginDto } from '../interfaces/auth/UserLoginDto';
+import { UserLoginResponseDto } from '../interfaces/auth/UserLoginResponseDto';
+import { PostBaseResponseDto } from '../interfaces/common/PostBaseResponseDto';
 import { TotalRecipeResponseDto } from '../interfaces/recipe/TotalRecipeResponseDto';
 import { RecipeService } from '../services/RecipeService';
 import { wrapSuccess } from '../utils/success';
@@ -26,10 +26,37 @@ import { param } from '..';
 
 @Route('/recipe')
 @Tags('Recipe')
-@fluentProvide(RecipeController).done()
+@(fluentProvide(RecipeController).done())
 export class RecipeController extends Controller {
   constructor(@inject(RecipeService) private recipeService: RecipeService) {
     super();
+  }
+
+  @Security('jwt')
+  @SuccessResponse(201, 'Created')
+  @Response(404, 'Not Found - 이름에 해당하는 사용자 정보 없음')
+  @Post('/')
+  public async createRecipe(
+    @FormField() food: string,
+    @FormField() content: string,
+    @FormField() ingredient: string,
+    @Request() req: any,
+    @UploadedFile() file?: Express.Multer.File
+  ): Promise<PostBaseResponseDto> {
+    try {
+      const result = await this.recipeService.createRecipe(
+        food,
+        content,
+        ingredient,
+        req.user,
+        file
+      );
+
+      this.setStatus(201);
+      return wrapSuccess(result, '요리법 작성 성공', 201);
+    } catch (e) {
+      throw e;
+    }
   }
 
   @SuccessResponse(200, 'Success')
@@ -49,7 +76,7 @@ export class RecipeController extends Controller {
   @Get('/{recipeId}')
   public async getRecipeById(
     @Path() recipeId: number
-    ): Promise<EachRecipeResponseDto> {
+  ): Promise<EachRecipeResponseDto> {
     try {
       const result = await this.recipeService.getRecipeById(recipeId);
       this.setStatus(200);

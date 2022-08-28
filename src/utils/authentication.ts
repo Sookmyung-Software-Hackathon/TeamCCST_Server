@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
-import keys from '../config/keys';
 import { generateError } from './error';
 import { verifyToken } from './jwtHandler';
 
@@ -9,7 +8,7 @@ const extractAndDecodeToken = (req: express.Request) => {
   err.status = 401;
 
   try {
-    const accessToken = req.headers.authorization?.split('Bearer ')[1];
+    const accessToken = req.headers['authorization']?.split(' ').reverse()[0];
     if (!accessToken) throw err;
 
     const decodedAccessToken = verifyToken(accessToken);

@@ -4,7 +4,12 @@ const MYSQL_PASSWORD: string = process.env.MYSQL_PASSWORD as string;
 const MYSQL_USERNAME: string = process.env.MYSQL_USERNAME as string;
 const DB: string = process.env.DB as string;
 const JWT_SECRET: string = process.env.JWT_SECRET as string;
+const ACCESS_KEY_ID: string = process.env.ACCESS_KEY_ID as string;
+const SECRET_KEY: string = process.env.SECRET_KEY as string;
+const BUCKET: string = process.env.BUCKET as string;
 const NODE_ENV: string = (process.env.NODE_ENV as string) || 'development';
+const DEFAULT_IMAGE_URL: string = process.env.DEFAULT_IMAGE_URL as string;
+const FRONT_URL: string = process.env.FRONT_RUL as string;
 
 export = {
   PORT,
@@ -13,5 +18,10 @@ export = {
   MYSQL_USERNAME,
   DB,
   JWT_SECRET,
-  NODE_ENV
+  ACCESS_KEY_ID,
+  SECRET_KEY,
+  BUCKET,
+  NODE_ENV,
+  DEFAULT_IMAGE_URL,
+  FRONT_URL
 };
