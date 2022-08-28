@@ -5,6 +5,7 @@ import {
   Controller,
   Delete,
   Deprecated,
+  FormField,
   Get,
   Patch,
   Path,
@@ -16,11 +17,9 @@ import {
   Route,
   Security,
   SuccessResponse,
-  Tags
+  Tags,
+  UploadedFile
 } from 'tsoa';
-import { UserCreateDto } from '../interfaces/auth/UserCreateDto';
-import { UserLoginDto } from '../interfaces/auth/UserLoginDto';
-import { UserLoginResponseDto } from '../interfaces/auth/UserLoginResponseDto';
 import { PostBaseResponseDto } from '../interfaces/common/PostBaseResponseDto';
 import { TotalRecipeResponseDto } from '../interfaces/recipe/TotalRecipeResponseDto';
 import { RecipeService } from '../services/RecipeService';
@@ -28,10 +27,37 @@ import { wrapSuccess } from '../utils/success';
 
 @Route('/recipe')
 @Tags('Recipe')
-@fluentProvide(RecipeController).done()
+@(fluentProvide(RecipeController).done())
 export class RecipeController extends Controller {
   constructor(@inject(RecipeService) private recipeService: RecipeService) {
     super();
+  }
+
+  @Security('jwt')
+  @SuccessResponse(201, 'Created')
+  @Response(404, 'Not Found - 이름에 해당하는 사용자 정보 없음')
+  @Post('/')
+  public async createRecipe(
+    @UploadedFile() file: Express.Multer.File,
+    @FormField() food: string,
+    @FormField() content: string,
+    @FormField() ingredient: string,
+    @Request() req: any
+  ): Promise<PostBaseResponseDto> {
+    try {
+      const result = await this.recipeService.createRecipe(
+        food,
+        content,
+        ingredient,
+        req.user,
+        file
+      );
+
+      this.setStatus(201);
+      return wrapSuccess(result, '요리법 작성 성공', 201);
+    } catch (e) {
+      throw e;
+    }
   }
 
   // 전체조회 - 에러처리 멀 할지

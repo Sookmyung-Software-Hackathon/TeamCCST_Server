@@ -123,6 +123,36 @@
 				"type": "object",
 				"additionalProperties": true
 			},
+			"PostBaseResponseDto": {
+				"properties": {
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"properties": {
+							"id": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"id"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"status",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
 			"RecipeResponse": {
 				"properties": {
 					"imageURL": {
@@ -260,6 +290,64 @@
 			}
 		},
 		"/recipe": {
+			"post": {
+				"operationId": "CreateRecipe",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PostBaseResponseDto"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found - 이름에 해당하는 사용자 정보 없음"
+					}
+				},
+				"tags": [
+					"Recipe"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									},
+									"food": {
+										"type": "string"
+									},
+									"content": {
+										"type": "string"
+									},
+									"ingredient": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"file",
+									"food",
+									"content",
+									"ingredient"
+								]
+							}
+						}
+					}
+				}
+			},
 			"get": {
 				"operationId": "GetRecipe",
 				"responses": {
