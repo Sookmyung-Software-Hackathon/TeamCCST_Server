@@ -33,11 +33,11 @@ export class RecipeController extends Controller {
   @Response(404, 'Not Found - 이름에 해당하는 사용자 정보 없음')
   @Post('/')
   public async createRecipe(
-    @UploadedFile() file: Express.Multer.File,
     @FormField() food: string,
     @FormField() content: string,
     @FormField() ingredient: string,
-    @Request() req: any
+    @Request() req: any,
+    @UploadedFile() file?: Express.Multer.File
   ): Promise<PostBaseResponseDto> {
     try {
       const result = await this.recipeService.createRecipe(
