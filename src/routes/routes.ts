@@ -72,6 +72,7 @@ const models: TsoaRoute.Models = {
     "RecipeResponse": {
         "dataType": "refObject",
         "properties": {
+            "id": {"dataType":"double","required":true},
             "imageURL": {"dataType":"string","required":true},
             "title": {"dataType":"string","required":true},
             "writerInfo": {"dataType":"string","required":true},
@@ -189,11 +190,11 @@ export function RegisterRoutes(app: express.Router) {
 
             async function RecipeController_createRecipe(request: any, response: any, next: any) {
             const args = {
-                    file: {"in":"formData","name":"file","required":true,"dataType":"file"},
                     food: {"in":"formData","name":"food","required":true,"dataType":"string"},
                     content: {"in":"formData","name":"content","required":true,"dataType":"string"},
                     ingredient: {"in":"formData","name":"ingredient","required":true,"dataType":"string"},
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    file: {"in":"formData","name":"file","dataType":"file"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

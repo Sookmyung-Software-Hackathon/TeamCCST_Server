@@ -155,6 +155,10 @@
 			},
 			"RecipeResponse": {
 				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
 					"imageURL": {
 						"type": "string"
 					},
@@ -166,6 +170,7 @@
 					}
 				},
 				"required": [
+					"id",
 					"imageURL",
 					"title",
 					"writerInfo"
@@ -372,10 +377,6 @@
 							"schema": {
 								"type": "object",
 								"properties": {
-									"file": {
-										"type": "string",
-										"format": "binary"
-									},
 									"food": {
 										"type": "string"
 									},
@@ -384,10 +385,13 @@
 									},
 									"ingredient": {
 										"type": "string"
+									},
+									"file": {
+										"type": "string",
+										"format": "binary"
 									}
 								},
 								"required": [
-									"file",
 									"food",
 									"content",
 									"ingredient"

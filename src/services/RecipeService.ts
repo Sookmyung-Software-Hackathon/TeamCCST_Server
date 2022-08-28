@@ -96,6 +96,7 @@ export class RecipeService {
           const title: string = `${recipe.user.name} ${recipe.user.nickname}의 ${recipe.food}`;
           const writerInfo: string = `${recipe.user.name} ${recipe.user.nickname} | ${age}세 청춘`;
           return {
+            id: recipe.id,
             imageURL: recipe.image.url,
             title: title,
             writerInfo: writerInfo
