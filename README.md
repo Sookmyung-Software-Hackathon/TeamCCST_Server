@@ -66,3 +66,6 @@
 |   Move   |               프로젝트 내 파일이나 코드의 이동               |
 |  Rename  |                파일 이름 변경이 있을 때 사용                 |
 | Refactor |                   이미 완성된 기능 리팩토링                |
+
+### Coding Convention
+[Typescript Style Guide](https://basarat.gitbook.io/typescript/styleguide)
