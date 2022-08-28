@@ -9,7 +9,8 @@ const extractAndDecodeToken = (req: express.Request) => {
   err.status = 401;
 
   try {
-    const accessToken = req.headers.authorization?.split('Bearer ')[1];
+    console.log('>>>>>>>>>>>>>>>>>>', req.headers);
+    const accessToken = req.headers['authorization']?.split(' ').reverse()[0];
     console.log(accessToken);
     if (!accessToken) throw err;
 
