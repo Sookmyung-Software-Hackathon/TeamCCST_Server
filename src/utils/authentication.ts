@@ -10,9 +10,11 @@ const extractAndDecodeToken = (req: express.Request) => {
 
   try {
     const accessToken = req.headers.authorization?.split('Bearer ')[1];
+    console.log(accessToken);
     if (!accessToken) throw err;
 
     const decodedAccessToken = verifyToken(accessToken);
+    console.log(decodedAccessToken);
     if (!decodedAccessToken) throw err;
 
     return decodedAccessToken;
