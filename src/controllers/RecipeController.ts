@@ -1,17 +1,11 @@
 import { inject } from 'inversify';
 import { fluentProvide } from 'inversify-binding-decorators';
 import {
-  Body,
   Controller,
-  Delete,
-  Deprecated,
   FormField,
   Get,
-  Patch,
   Path,
   Post,
-  Put,
-  Query,
   Request,
   Response,
   Route,
@@ -21,6 +15,7 @@ import {
   UploadedFile
 } from 'tsoa';
 import { PostBaseResponseDto } from '../interfaces/common/PostBaseResponseDto';
+import { EachRecipeResponseDto } from '../interfaces/recipe/RecipeResponseDto';
 import { TotalRecipeResponseDto } from '../interfaces/recipe/TotalRecipeResponseDto';
 import { RecipeService } from '../services/RecipeService';
 import { wrapSuccess } from '../utils/success';
@@ -60,7 +55,6 @@ export class RecipeController extends Controller {
     }
   }
 
-  // 전체조회 - 에러처리 멀 할지
   @SuccessResponse(200, 'Success')
   @Get('/')
   public async getRecipe(): Promise<TotalRecipeResponseDto> {
@@ -70,6 +64,21 @@ export class RecipeController extends Controller {
       this.setStatus(200);
       return wrapSuccess(result, '요리법 전체 조회 성공', 200);
     } catch (e) {
+      throw e;
+    }
+  }
+
+  @SuccessResponse(200, 'Success')
+  @Get('/{recipeId}')
+  public async getRecipeById(
+    @Path() recipeId: number
+  ): Promise<EachRecipeResponseDto> {
+    try {
+      const result = await this.recipeService.getRecipeById(recipeId);
+      this.setStatus(200);
+      return wrapSuccess(result, '요리법 상세 조회 성공', 200);
+    } catch (e) {
+      console.log(e);
       throw e;
     }
   }
