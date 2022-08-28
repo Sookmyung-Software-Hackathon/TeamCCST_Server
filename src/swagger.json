@@ -207,7 +207,7 @@
 		}
 	},
 	"info": {
-		"title": "sample-api",
+		"title": "ccst-server",
 		"version": "1.0.0",
 		"license": {
 			"name": "MIT"
