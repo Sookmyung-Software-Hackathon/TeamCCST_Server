@@ -166,6 +166,55 @@
 				],
 				"type": "object",
 				"additionalProperties": true
+			},
+			"RecipeResponseDto": {
+				"properties": {
+					"imageURL": {
+						"type": "string"
+					},
+					"writer": {
+						"type": "string"
+					},
+					"food": {
+						"type": "string"
+					},
+					"ingredient": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"imageURL",
+					"writer",
+					"food",
+					"ingredient",
+					"content"
+				],
+				"type": "object",
+				"additionalProperties": true
+			},
+			"EachRecipeResponseDto": {
+				"properties": {
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/RecipeResponseDto"
+					}
+				},
+				"required": [
+					"status",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": true
 			}
 		},
 		"securitySchemes": {
@@ -279,6 +328,38 @@
 				],
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/recipe/{recipeId}": {
+			"get": {
+				"operationId": "GetRecipeById",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EachRecipeResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Recipe"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "recipeId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
 			}
 		}
 	},

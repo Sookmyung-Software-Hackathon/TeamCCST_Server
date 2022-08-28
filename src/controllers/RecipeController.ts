@@ -18,13 +18,11 @@ import {
   SuccessResponse,
   Tags
 } from 'tsoa';
-import { UserCreateDto } from '../interfaces/auth/UserCreateDto';
-import { UserLoginDto } from '../interfaces/auth/UserLoginDto';
-import { UserLoginResponseDto } from '../interfaces/auth/UserLoginResponseDto';
-import { PostBaseResponseDto } from '../interfaces/common/PostBaseResponseDto';
 import { TotalRecipeResponseDto } from '../interfaces/recipe/TotalRecipeResponseDto';
 import { RecipeService } from '../services/RecipeService';
 import { wrapSuccess } from '../utils/success';
+import { EachRecipeResponseDto, RecipeResponseDto } from '../interfaces/recipe/RecipeResponseDto';
+import { param } from '..';
 
 @Route('/recipe')
 @Tags('Recipe')
@@ -34,7 +32,6 @@ export class RecipeController extends Controller {
     super();
   }
 
-  // 전체조회 - 에러처리 멀 할지
   @SuccessResponse(200, 'Success')
   @Get('/')
   public async getRecipe(): Promise<TotalRecipeResponseDto> {
@@ -44,6 +41,21 @@ export class RecipeController extends Controller {
       this.setStatus(200);
       return wrapSuccess(result, '요리법 전체 조회 성공', 200);
     } catch (e) {
+      throw e;
+    }
+  }
+
+  @SuccessResponse(200, 'Success')
+  @Get('/{recipeId}')
+  public async getRecipeById(
+    @Path() recipeId: number
+    ): Promise<EachRecipeResponseDto> {
+    try {
+      const result = await this.recipeService.getRecipeById(recipeId);
+      this.setStatus(200);
+      return wrapSuccess(result, '요리법 상세 조회 성공', 200);
+    } catch (e) {
+      console.log(e);
       throw e;
     }
   }
