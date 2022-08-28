@@ -25,3 +25,31 @@
 <img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white">
 <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white">
 
+### API 명세
+[swagger 바로가기](https://ccst-server.herokuapp.com/api-docs/)
+
+### Server Architecture
+
+![architecture](https://user-images.githubusercontent.com/20807197/187064193-e135a4a4-f09e-4822-af14-e70e12723974.png)
+
+### Dependencies
+```json
+    "aws-sdk": "^2.1204.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.18.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.15.4",
+    "inversify": "^6.0.1",
+    "inversify-binding-decorators": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4",
+    "multer-s3": "^2.10.0",
+    "mysql": "^2.14.1",
+    "reflect-metadata": "^0.1.10",
+    "swagger-ui-express": "^4.3.0",
+    "ts-node": "^10.9.1",
+    "tsoa": "^4.0.0",
+    "typeorm": "0.2.41"
+ ```
+ 
