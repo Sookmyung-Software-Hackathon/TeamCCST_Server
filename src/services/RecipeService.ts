@@ -87,7 +87,10 @@ export class RecipeService {
 
     try {
       const totalRecipe = await recipeRepository.find({
-        relations: ['image', 'user']
+        relations: ['image', 'user'],
+        order: {
+          id: "DESC"
+        }
       });
 
       const data: RecipeResponse[] = await Promise.all(
