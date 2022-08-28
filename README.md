@@ -29,7 +29,7 @@ MZ 세대들은 시니어의 연륜과 경험을 궁금해합니다.
 > Sookmyung Software Hackathon 2nd   
 > 프로젝트 기간 : 2022.08.27 ~ 2022.08.28
 
-### 기획서
+### 기획서 (시연 영상은 기획서 내부에 있습니다)
 [기획서 바로가기](https://myjouney.notion.site/29c5f73040f949f0b12234828058ca09)
 
 ### 서비스 명
@@ -60,7 +60,7 @@ MZ 세대들은 시니어의 연륜과 경험을 궁금해합니다.
 
 
 ### Tech Stacks
-<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">\
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge">
 <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
