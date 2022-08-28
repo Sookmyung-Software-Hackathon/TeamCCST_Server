@@ -11,6 +11,7 @@ import storage from '../config/s3Config';
 import { ImageRepository } from '../repository/ImageRepository';
 import { Image } from '../entity/Image';
 import { UserRepository } from '../repository/UserRepository';
+import { RecipeResponseDto } from '../interfaces/recipe/RecipeResponseDto';
 
 @provideSingleton(RecipeService)
 export class RecipeService {
@@ -109,20 +110,27 @@ export class RecipeService {
     }
   }
 
-  // public async getRecipeById(recipeId: Number) {
-  //   const recipeRepository = getCustomRepository(RecipeRepository);
+  public async getRecipeById(recipeId: number) {
+    const recipeRepository = getCustomRepository(RecipeRepository);
 
-  //   try {
-  //     const recipe = await recipeRepository.findOne({
-  //       id: recipeId
-  //     });
-  //     if (!recipe) throw generateError('Not Found');
+    try {
+      const recipe = await recipeRepository.findOne(recipeId, {
+        relations: ['image', 'user']
+      });
+      if (!recipe) throw generateError('Not Found');
 
-  //     const data = {recipe}
+      const data: RecipeResponseDto = {
+        imageURL: recipe.image.url,
+        writer: `${recipe.user.name} ${recipe.user.nickname}`,
+        food: recipe.food,
+        ingredient: recipe.ingredient,
+        content: recipe.content
+      };
 
-  //     return data
-  //   } catch(e) {
-  //     throw e;
-  //   }
-  // }
+      return data;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
 }
