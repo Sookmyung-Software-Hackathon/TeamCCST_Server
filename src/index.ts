@@ -12,7 +12,9 @@ import keys from './config/keys';
 const app = express();
 
 const corsOrigin =
-  keys.NODE_ENV === 'production' ? [keys.FRONT_URL] : ['http://localhost:3000'];
+  keys.NODE_ENV === 'production'
+    ? [keys.FRONT_URL]
+    : ['http://localhost:3000', keys.FRONT_URL];
 
 app.use(express.json({ limit: '100mb' }));
 
